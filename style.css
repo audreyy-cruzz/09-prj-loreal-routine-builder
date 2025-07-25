@@ -135,6 +135,25 @@ body {
   outline-offset: 2px;
 }
 
+/* Make the "Remove" button white */
+.remove-selected {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Change text to red on hover */
+.remove-selected:hover {
+  background: #f0f0f0;
+  color: #d32f2f; /* Red text color */
+}
+
 /* visually hidden */
 .visually-hidden {
   position: absolute;
@@ -176,16 +195,21 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   margin: 30px 0;
+  justify-content: center;
 }
 
 .product-card {
-  flex: 0 1 calc(33.333% - 14px);
+  flex: 1 1 280px; /* Allow card to grow and shrink, minimum 280px wide */
+  min-width: 220px; /* Prevent card from getting too narrow */
+  max-width: 340px; /* Optional: limit max width for large screens */
   border: 1px solid #ccc;
   padding: 15px;
   border-radius: 4px;
   display: flex;
   gap: 15px;
   min-height: 160px;
+  position: relative; /* Needed for overlay positioning */
+  overflow: hidden;
 }
 
 .product-card img {
@@ -211,6 +235,34 @@ body {
 .product-card p {
   font-size: 14px;
   color: #666;
+}
+
+/* Product description overlay on hover */
+.product-description-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: rgba(227, 166, 53);
+  color: #fff;
+  font-size: 11px;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.product-card:hover .product-description-overlay {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* selected products */
@@ -252,4 +304,25 @@ body {
 
 .generate-btn i {
   margin-right: 8px;
+}
+
+/* Highlight selected product cards */
+.product-card.selected {
+  border: 2px solid #e3a535;
+  background-color: #e2be7b;
+}
+
+#clearSelected {
+  font-size: 18px;
+  padding: 12px 24px;
+  background-color: #ffffff; /* Optional: L'Oréal red */
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#clearSelected:hover {
+  background-color: #a19b9c;
 }
